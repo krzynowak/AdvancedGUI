@@ -25,16 +25,16 @@
             </TreeViewItem>-->
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}">
-                    <EventSetter Event="MouseDoubleClick"
+                    <EventSetter Event="Selected"
                 Handler="treeItem_Selected"/>
                 </Style>
             </TreeView.ItemContainerStyle>
         </TreeView>
         <Label Content="Typ:" HorizontalAlignment="Left" Margin="336,59,0,0" VerticalAlignment="Top" Width="64" Height="24"/>
-        <TextBox Name="TypeBox" HorizontalAlignment="Left" Margin="400,64,0,0" Text="Saturn" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
+        <TextBox Name="TypeBox" HorizontalAlignment="Left" Margin="400,64,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
         <Label Content="Opis:" HorizontalAlignment="Left" Margin="336,88,0,0" VerticalAlignment="Top" Width="64" Height="24"/>
-        <TextBox Name="DescriptionBox" HorizontalAlignment="Left" Margin="400,93,0,0" Text="Saturn - gazowy olbrzym, szósta planeta Układu Słonecznego pod względem odległości od Słońca, druga po Jowiszu pod względem masy i wielkości." TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="288"/>
+        <TextBox Name="DescriptionBox" HorizontalAlignment="Left" Margin="400,93,0,0" Text="Wybierz pozycję z menu po lewej stronie." TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="288"/>
         <Label Content="Nazwa:" HorizontalAlignment="Left" Margin="336,32,0,0" VerticalAlignment="Top" Width="64" Height="24"/>
-        <TextBox Name="NameBox" HorizontalAlignment="Left" Margin="400,37,0,0" Text="Saturn" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
+        <TextBox Name="NameBox" HorizontalAlignment="Left" Margin="400,37,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
     </Grid>
 </Window>
