@@ -1,0 +1,117 @@
+<?xml version = "1.0"?>
+
+<xs:schema xmlns:xs = "http://www.w3.org/2001/XMLSchema">
+
+   <xs:element name = "Universe">
+      <xs:complexType>
+         <xs:sequence>
+                <xs:element name="Super_Cluster" type="Super_Cluster" minOccurs ="5" maxOccurs="10" />
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+
+   <xs:complexType name = "Super_Cluster">
+        <xs:sequence>
+            <xs:element name="name" type ="xs:string"/>
+            <xs:element name="Description" type ="xs:string"/>
+            <xs:element name="Galactic_Group" type="Galactic_Group" minOccurs ="10" maxOccurs="15" />
+        </xs:sequence>
+    </xs:complexType>	
+
+    <xs:complexType name = "Galactic_Group">
+        <xs:sequence>
+            <xs:element name="name" type ="xs:string"/>
+            <xs:element name="Description" type ="xs:string"/>
+            <xs:element name="Galaxy" type="Galaxy" minOccurs ="1" maxOccurs="50" />
+        </xs:sequence>
+    </xs:complexType>	
+
+    <xs:complexType name = "Galaxy">
+        <xs:sequence>
+            <xs:element name="name" type ="xs:string"/>
+            <xs:element name="Description" type ="xs:string"/>
+            <xs:element name="Planetary_System" type="Planetary_System" minOccurs ="1" maxOccurs="100" />
+            <xs:element name="Star" type="Star" minOccurs ="1" maxOccurs="10" />
+            <xs:element name="Compact_Star" type="Compact_Star" minOccurs ="1" maxOccurs="2" />
+        </xs:sequence>
+    </xs:complexType>	
+
+    <xs:complexType name = "Planetary_System">
+        <xs:sequence>
+            <xs:element name="name" type ="xs:string"/>
+            <xs:element name="Description" type ="xs:string"/>
+            <xs:element name="Star" type="Star" minOccurs ="0" maxOccurs="1" />
+            <xs:element name="Planet" type="Planet" minOccurs ="1" maxOccurs="15" />
+            <xs:element name="Dwarf_Planet" type="Dwarf_Planet" minOccurs ="1" maxOccurs="10" />
+            <xs:element name="Asteroid" type="Asteroid" minOccurs ="1" maxOccurs="10" />
+            <xs:element name="Meteoroid" type="Meteoroid" minOccurs ="1" maxOccurs="10" />
+            <xs:element name="Comet" type="Comet" minOccurs ="1" maxOccurs="10" />
+            <xs:element name="Circumstellar_Disk" type="Circumstellar_Disk" minOccurs ="1" maxOccurs="5" />
+        </xs:sequence>
+    </xs:complexType>	
+
+    <xs:complexType name = "Compact_Star">
+        <xs:sequence>
+        <xs:element name="name" type ="xs:string"/>
+        <xs:element name="Description" type ="xs:string"/>
+    </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name = "Star">
+        <xs:sequence>
+        <xs:element name="name" type ="xs:string"/>
+        <xs:element name="Description" type ="xs:string"/>
+    </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name = "Planet">
+        <xs:sequence>
+            <xs:element name="name" type ="xs:string"/>
+            <xs:element name="Description" type ="xs:string"/>
+            <xs:element name="Satelite" type="Satelite" minOccurs ="0" maxOccurs="15" />
+        </xs:sequence>
+    </xs:complexType>	
+
+    <xs:complexType name = "Satelite">
+        <xs:sequence>
+        <xs:element name="name" type ="xs:string"/>
+        <xs:element name="Description" type ="xs:string"/>
+    </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name = "Dwarf_Planet">
+        <xs:sequence>
+        <xs:element name="name" type ="xs:string"/>
+        <xs:element name="Description" type ="xs:string"/>
+    </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name = "Asteroid">
+        <xs:sequence>
+        <xs:element name="name" type ="xs:string"/>
+        <xs:element name="Description" type ="xs:string"/>
+    </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name = "Meteoroid">
+        <xs:sequence>
+        <xs:element name="name" type ="xs:string"/>
+        <xs:element name="Description" type ="xs:string"/>
+    </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name = "Comet">
+        <xs:sequence>
+        <xs:element name="name" type ="xs:string"/>
+        <xs:element name="Description" type ="xs:string"/>
+    </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name = "Circumstellar_Disk">
+        <xs:sequence>
+        <xs:element name="name" type ="xs:string"/>
+        <xs:element name="Description" type ="xs:string"/>
+    </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
