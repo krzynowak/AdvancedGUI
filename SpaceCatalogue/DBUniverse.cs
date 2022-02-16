@@ -12,9 +12,9 @@ namespace SpaceCatalogue
             public string Type;
             public bool hasChildren;
 
-            public Node_Info(string nme, string typ, bool children)
+            public Node_Info(string name, string typ, bool children)
             {
-                Name = nme;
+                Name = name;
                 Type = typ;
                 hasChildren = children;
             }
@@ -23,7 +23,7 @@ namespace SpaceCatalogue
         public struct Node_Request
         {
             public int ChildIdx;
-            public String Name;
+            public string Name;
 
             public Node_Request(int idx, string nme)
             {
