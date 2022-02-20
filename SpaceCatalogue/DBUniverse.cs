@@ -4,7 +4,7 @@ using System.Xml;
 
 namespace SpaceCatalogue
 {
-    internal class DBUniverse
+    public class DBUniverse
     {
         public struct Node_Info
         {

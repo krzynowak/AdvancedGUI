@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Universe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="universe.xsd">
+	<Super_Cluster>
+		<name>Super test cluster</name>
+		<Description>Super test cluster description.</Description>
+		<Galactic_Group>
+			<name>Galactic test Group</name>
+			<Description>Galactic test Group Description</Description>
+			<Galaxy>
+				<name>test galaxt</name>
+				<Description>test galax descrition</Description>
+				<Planetary_System>
+					<name>Planetary system test</name>
+					<Description>Planetary system test descrition</Description>
+					<Planet>
+						<name>test planet</name>
+						<Description>test planet descrition</Description>
+					</Planet>
+					<Planet>
+						<name>test planet2</name>
+						<Description>test planet2 descrition</Description>
+					</Planet>
+					<Dwarf_Planet>
+						<name>test dwarf planet</name>
+						<Description>dwarf planet desc</Description>
+					</Dwarf_Planet>
+					<Asteroid>
+						<name>Asteroid test</name>
+						<Description>Asteroid test desc</Description>
+					</Asteroid>
+					<Meteoroid>
+						<name>Meteoroid test</name>
+						<Description>Meteoroid test.</Description>
+					</Meteoroid>
+					<Comet>
+						<name>Comet test</name>
+						<Description>Comet test desc.</Description>
+					</Comet>
+					<Circumstellar_Disk>
+						<name>Circumstellar_Disk test</name>
+						<Description>Circumstellar_Disk test</Description>
+					</Circumstellar_Disk>
+				</Planetary_System>
+				<Star>
+					<name>test star</name>
+					<Description>test star desc</Description>
+				</Star>
+				<Compact_Star>
+					<name>Compact Star test</name>
+					<Description>Compact Star test</Description>
+				</Compact_Star>
+			</Galaxy>
+		</Galactic_Group>
+	</Super_Cluster>
+</Universe>
