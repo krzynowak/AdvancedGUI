@@ -89,7 +89,11 @@ namespace SpaceCatalogue
             {
                 node = node[req.Name];
                 cnt = req.ChildIdx;
-                while (--cnt > 0) node = node.NextSibling;
+                while (--cnt > 0)
+                {
+                    if (node.NextSibling == null) { break; }
+                    node = node.NextSibling;
+                }
             }
 
             node = node["Description"];
