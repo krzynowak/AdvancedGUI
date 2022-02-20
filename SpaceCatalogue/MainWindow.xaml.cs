@@ -3,6 +3,8 @@ using System.Windows;
 using System.IO;
 using System.Windows.Controls;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Windows.Media;
 
 namespace SpaceCatalogue
 {
@@ -36,7 +38,7 @@ namespace SpaceCatalogue
                 {
                     Debug.WriteLine($"Name: {nodeI.Name} Type: {nodeI.Type} Has Children: {nodeI.hasChildren}");
 
-                    TreeViewItem mainTreeElem = new TreeViewItem() { Header = $"{nodeI.Name} ( {nodeI.Type} )", Tag = $"{index}/{nodeI.Type}" };
+                    TreeViewItem mainTreeElem = new TreeViewItem() { Header = $"{nodeI.Name} ( {nodeI.Type} )", Tag = $"{index}/{nodeI.Type}/{nodeI.hasChildren}" };
 
                     treeNode.Items.Add(mainTreeElem);
                     index += 1;
@@ -46,10 +48,24 @@ namespace SpaceCatalogue
             }
         }
 
+        public ItemsControl GetSelectedTreeViewItemParent(TreeViewItem item)
+        {
+            DependencyObject parent = VisualTreeHelper.GetParent(item);
+
+            while (!(parent is TreeViewItem || parent is TreeView))
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+
+            return parent as ItemsControl;
+        }
+
         void treeItem_Selected(object sender, RoutedEventArgs e)
         {
             TreeViewItem item = sender as TreeViewItem;
             TreeViewItem selectedTVI = (TreeViewItem)treeNode.SelectedItem;
+
+            List<string> treePath = new List<string>();
 
             Debug.WriteLine((string)selectedTVI.Header);
             Debug.WriteLine(selectedTVI.Tag);
@@ -59,9 +75,40 @@ namespace SpaceCatalogue
 
             int index = Int16.Parse(subs[0]);
             string type = subs[1];
+            bool hasChildren = subs[2] == "True";
 
             Debug.WriteLine($"index: {index}");
             Debug.WriteLine($"type: {type}");
+            Debug.WriteLine($"hasChildren: {hasChildren}");
+
+            treePath.Add(tag);
+
+            TreeViewItem currentNode = selectedTVI;
+            bool inProgress = true;
+            while(inProgress)
+            {
+                string currentTag = (string)selectedTVI.Tag;
+                string[] currentSubs = currentTag.Split('/');
+                bool currentHasChildren = currentSubs[2] == "True";
+
+                Debug.WriteLine($"currentTag: {currentTag}");
+                Debug.WriteLine($"currentHasChildren: {currentHasChildren}");
+
+                ItemsControl parent = GetSelectedTreeViewItemParent(currentNode);
+
+                TreeViewItem treeitem = parent as TreeViewItem;
+
+                if (treeitem != null)
+                {
+                    treePath.Add((string)treeitem.Tag);
+                    currentNode = treeitem;
+                } else
+                {
+                    inProgress = false;
+                }
+            }
+
+            treePath.Reverse();
 
             DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory());
             string connectionString = di.Parent.Parent.FullName + "\\SampleData\\ExampleUniverse.xml";
@@ -76,7 +123,18 @@ namespace SpaceCatalogue
 
             Debug.WriteLine("Looking for records");
             DBUniverse.DB_Request new_req = new DBUniverse.DB_Request(1);//Find the elements of:
-            new_req.reqList.Add(new DBUniverse.Node_Request(index, type));//the first super clusters
+            foreach (string path in treePath)
+            {
+                string[] substring = path.Split('/');
+
+                int index2 = Int16.Parse(substring[0]);
+                string type2 = substring[1];
+
+                Debug.WriteLine($"index: {index2}");
+                Debug.WriteLine($"type: {type2}");
+
+                new_req.reqList.Add(new DBUniverse.Node_Request(index2, type2));//the first super clusters
+            }
 
             //send request
             Debug.WriteLine("Send request");
@@ -92,9 +150,9 @@ namespace SpaceCatalogue
             int childrenIndex = 1;
             foreach (DBUniverse.Node_Info nodeI in selectedNode.myList)
             {
-                Debug.WriteLine($"Name: {nodeI.Name} Type: {nodeI.Type} Has Children: {nodeI.hasChildren}");
+                Debug.WriteLine($"Name: {nodeI.Name} Type: {nodeI.Type} Has Children: {nodeI.hasChildren}, index: {childrenIndex}");
 
-                TreeViewItem mainTreeElem = new TreeViewItem() { Header = $"{nodeI.Name} ( {nodeI.Type} )", Tag = $"{childrenIndex}/{nodeI.Type}" };
+                TreeViewItem mainTreeElem = new TreeViewItem() { Header = $"{nodeI.Name} ( {nodeI.Type} )", Tag = $"{childrenIndex}/{nodeI.Type}/{nodeI.hasChildren}" };
 
                 selectedTVI.Items.Add(mainTreeElem);
                 childrenIndex += 1;
