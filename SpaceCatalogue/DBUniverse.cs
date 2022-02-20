@@ -96,6 +96,8 @@ namespace SpaceCatalogue
                 }
             }
 
+            if (node == null) throw new Exception("bad request!!!");
+
             node = node["Description"];
 
             DataInstance.Desc = node.InnerText;
