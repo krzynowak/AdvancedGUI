@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Windows.Media;
+using Microsoft.Win32;
 
 namespace SpaceCatalogue
 {
@@ -17,8 +18,19 @@ namespace SpaceCatalogue
         {
             InitializeComponent();
 
-            DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory());
-            string connectionString = di.Parent.Parent.FullName + "\\SampleData\\ExampleUniverse.xml";
+            string connectionString = "";
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                //Debug.WriteLine("HI - congratz on getting here without causing an error");
+                //Debug.WriteLine(openFileDialog.FileName);
+                connectionString = openFileDialog.FileName;
+            }
+
+            //txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
+
+            //DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory());
+            //string connectionString = di.Parent.Parent.FullName + "\\SampleData\\ExampleUniverse.xml";
             //Connect to database
             DBUniverse db = new DBUniverse(connectionString);
 
