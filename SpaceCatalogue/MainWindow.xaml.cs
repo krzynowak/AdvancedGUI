@@ -14,11 +14,12 @@ namespace SpaceCatalogue
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string connectionString = "";
+
         public MainWindow()
         {
             InitializeComponent();
 
-            string connectionString = "";
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
@@ -123,7 +124,7 @@ namespace SpaceCatalogue
             treePath.Reverse();
 
             DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory());
-            string connectionString = di.Parent.Parent.FullName + "\\SampleData\\ExampleUniverse.xml";
+
             //Connect to database
             Debug.WriteLine("Connect to database");
             DBUniverse db = new DBUniverse(connectionString);
