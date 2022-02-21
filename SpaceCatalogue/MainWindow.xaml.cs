@@ -161,6 +161,7 @@ namespace SpaceCatalogue
             TypeBox.Text = type;
 
             int childrenIndex = 1;
+            selectedTVI.Items.Clear();
             foreach (DBUniverse.Node_Info nodeI in selectedNode.myList)
             {
                 Debug.WriteLine($"Name: {nodeI.Name} Type: {nodeI.Type} Has Children: {nodeI.hasChildren}, index: {childrenIndex}");
